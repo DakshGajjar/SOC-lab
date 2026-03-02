@@ -67,6 +67,11 @@ docker compose up -d thehive
 ---
 
 ## 🔒 Security Note
-This installer is safe for public GitHub repositories as it contains **zero hardcoded secrets**. All keys and passwords are either generated randomly at runtime or use generic placeholders that you update manually.
+All keys and passwords are either generated randomly at runtime or use generic placeholders that you update manually.
+
+## UI
+<img width="750" height="auto" alt="image" src="https://github.com/user-attachments/assets/8e56823d-8562-472a-98ba-dc8eaed4d0f9" />
+
 
 *Created using Antigravity AI.*
+

@@ -40,10 +40,6 @@ graph TD
         Dashboard[SOC Dashboard] -->|Real-time Feed| AI
         Dashboard -->|Status| Graylog & TheHive & ES
     end
-
-    style AI fill:#f9f,stroke:#333,stroke-width:2px
-    style Ollama fill:#bbf,stroke:#333,stroke-width:2px
-    style Graylog fill:#dfd,stroke:#333,stroke-width:2px
 ```
 
 ### Component Roles:
@@ -126,5 +122,6 @@ All keys and passwords are either generated randomly at runtime or use generic p
 
 
 *Created using Antigravity AI.*
+
 
 

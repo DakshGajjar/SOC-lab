@@ -10,9 +10,6 @@ With just one Python file, you can deploy a full-stack security pipeline includi
 
 The SOC-Lab integrates industry-standard tools into a unified, high-performance security pipeline.
 
-### High-Level Architecture
-![SOC Lab Architecture](./architecture_diagram.png)
-
 ### The Data Flow
 ```mermaid
 graph TD
@@ -129,4 +126,5 @@ All keys and passwords are either generated randomly at runtime or use generic p
 
 
 *Created using Antigravity AI.*
+
 

@@ -6,6 +6,61 @@ With just one Python file, you can deploy a full-stack security pipeline includi
 
 ---
 
+## 🏗️ Architecture Overview
+
+The SOC-Lab integrates industry-standard tools into a unified, high-performance security pipeline.
+
+### High-Level Architecture
+![SOC Lab Architecture](./architecture_diagram.png)
+
+### The Data Flow
+```mermaid
+graph TD
+    subgraph "Log Ingestion"
+        Sources[External Sources] -->|Syslog/GELF| Graylog[Graylog Server]
+    end
+
+    subgraph "Storage & Indexing"
+        Graylog -->|Logs| ES[(Elasticsearch)]
+        Graylog -->|Metadata| Mongo[(MongoDB)]
+        TheHive[(TheHive)] -->|Case Data| ES
+        TheHive -->|State| Cassandra[(Cassandra)]
+    end
+
+    subgraph "AI Analysis"
+        Graylog -->|Stream| AI[Junior SOC-AI Analyst]
+        AI <-->|Prompt/Response| Ollama[Ollama LLM]
+    end
+
+    subgraph "Incident Response"
+        AI -->|Critical Alerts| TheHive
+        TheHive <-->|Enrichment| Cortex[Cortex]
+        Cortex -->|Threat Intel| OTX[AlienVault OTX]
+    end
+
+    subgraph "Visibility"
+        Grafana[Grafana] -->|Query| ES
+        Dashboard[SOC Dashboard] -->|Real-time Feed| AI
+        Dashboard -->|Status| Graylog & TheHive & ES
+    end
+
+    style AI fill:#f9f,stroke:#333,stroke-width:2px
+    style Ollama fill:#bbf,stroke:#333,stroke-width:2px
+    style Graylog fill:#dfd,stroke:#333,stroke-width:2px
+```
+
+### Component Roles:
+- **Graylog**: Centralized log management and stream processing.
+- **Elasticsearch**: High-speed indexing and search for all security data.
+- **TheHive**: Security Incident Response Platform (SIRP) for case management.
+- **Cortex**: Analysis and response engine used by TheHive to enrich observables.
+- **Grafana**: Advanced visualization and metrics monitoring.
+- **Ollama**: Local LLM server running `qwen2.5:1.5b` for 100% private AI analysis.
+- **SOC-AI**: Custom Python orchestrator bridging Graylog, Ollama, and TheHive.
+- **SOC Dashboard**: A custom "Single Pane of Glass" React/Vue-style interface.
+
+---
+
 ## 🚀 Quick Start
 
 ### 1. Prerequisites
